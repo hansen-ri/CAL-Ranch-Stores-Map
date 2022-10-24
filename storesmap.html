@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.24/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.24/"></script>
+    <script>
+      require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/MapView",
+
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer",
+
+        "esri/layers/FeatureLayer",
+
+      ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
+        esriConfig.apiKey = "AAPK35e8710d7f084cd8953019a2b8622c25bbbDeRUIcdkQT1Ew_Z57NBcE3eqhb4LQnIufcPMEvJv5tw7GseK7sxkSbfcpsHiC";
+
+        const map = new Map({
+          basemap: "gray",
+        });
+
+        const view = new MapView({
+          map: map,
+          center: [-113.629, 38.214], //Longitude, latitude
+          zoom: 6,
+          container: "viewDiv",
+        });
+
+        // Define a pop-up for stores
+        const popupStores = {
+            "title": "C-A-L Ranch Stores",
+            "content": "<b>Location</b> {store_location}<br><b>Region:</b> {store_region}<br><b>Store #:</b> {store_num}<br><b>Store Initials:</b> {store_init}<br><b>Manager: {store_man}"
+        }
+
+        const stores = new FeatureLayer({
+            outFields: ["store_location", "store_region", "store_num", "store_init", "store_man"],
+            popupTemplate: popupStores
+        });
+
+        const graphicsLayer = new GraphicsLayer();
+        map.add(graphicsLayer);
+
+        // Point 1: Idaho Falls, ID
+        const point = {
+          //Create a point
+          type: "point",
+          longitude: -111.981,
+          latitude: 43.488,
+        };
+        const simpleMarkerSymbol = {
+          type: "simple-marker",
+          color: [180, 67, 108], // Magenta
+          outline: {
+            color: [255, 255, 255], // White
+            width: 1,
+          },
+        };
+
+        const pointGraphic = new Graphic({
+          geometry: point,
+          symbol: simpleMarkerSymbol,
+        });
+        graphicsLayer.add(pointGraphic);
+
+        // Point 2: Rexburg, ID
+        const point2 = {
+          type: "point",
+          longitude: -111.776,
+          latitude: 43.837,
+        };
+        const simpleMarkerSymbol2 = {
+          type: "simple-marker",
+          color: [180, 67, 108], // Magenta
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic2 = new Graphic({
+          geometry: point2,
+          symbol: simpleMarkerSymbol2,
+        });
+        graphicsLayer.add(pointGraphic2);
+
+        // Point 3: Blackfoot, ID
+        const point3 = {
+          type: "point",
+          longitude: -112.354,
+          latitude: 43.195,
+        };
+        const simpleMarkerSymbol3 = {
+          type: "simple-marker",
+          color: [180, 67, 108], // Magenta
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic3 = new Graphic({
+          geometry: point3,
+          symbol: simpleMarkerSymbol3,
+        });
+        graphicsLayer.add(pointGraphic3);
+
+        // Point 4: Pocatello, ID
+        const point4 = {
+          type: "point",
+          longitude: -112.471,
+          latitude: 42.910,
+        };
+        const simpleMarkerSymbol4 = {
+          type: "simple-marker",
+          color: [180, 67, 108], // Magenta
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic4 = new Graphic({
+          geometry: point4,
+          symbol: simpleMarkerSymbol4,
+        });
+        graphicsLayer.add(pointGraphic4);
+
+        // Point 5: Burley, ID
+        const point5 = {
+          type: "point",
+          longitude: -113.794,
+          latitude: 42.558,
+        };
+        const simpleMarkerSymbol5 = {
+          type: "simple-marker",
+          color: [180, 67, 108], // Magenta
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic5 = new Graphic({
+          geometry: point5,
+          symbol: simpleMarkerSymbol5,
+        });
+        graphicsLayer.add(pointGraphic5);
+
+        // Point 6: Logan, UT
+        const point6 = {
+          type: "point",
+          longitude: -111.832,
+          latitude: 41.764,
+        };
+        const simpleMarkerSymbol6 = {
+          type: "simple-marker", 
+          color: [180, 67, 108], // Magenta
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic6 = new Graphic({
+          geometry: point6,
+          symbol: simpleMarkerSymbol6,
+        });
+        graphicsLayer.add(pointGraphic6);
+
+        // Point 7: Spanish Fork, UT
+        const point7 = {
+          type: "point",
+          longitude: -111.653,
+          latitude: 40.122,
+        };
+        const simpleMarkerSymbol7 = {
+          type: "simple-marker",
+          color: [90,172,68], // Green
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic7 = new Graphic({
+          geometry: point7,
+          symbol: simpleMarkerSymbol7,
+        });
+        graphicsLayer.add(pointGraphic7);
+
+        // Point 8: American Fork, UT
+        const point8 = {
+          type: "point",
+          longitude: -111.815,
+          latitude: 40.380,
+        };
+        const simpleMarkerSymbol8 = {
+          type: "simple-marker",
+          color: [226,119,40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic8 = new Graphic({
+          geometry: point8,
+          symbol: simpleMarkerSymbol8,
+        });
+        graphicsLayer.add(pointGraphic8);
+
+        // Point 9: Farr West, UT
+        const point9 = {
+          type: "point",
+          longitude: -112.028,
+          latitude: 41.275,
+        };
+        const simpleMarkerSymbol9 = {
+          type: "simple-marker",
+          color: [226, 119, 40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic9 = new Graphic({
+          geometry: point9,
+          symbol: simpleMarkerSymbol9,
+        });
+        graphicsLayer.add(pointGraphic9);
+
+        // Point 10: Tooele, UT
+        const point10 = {
+          type: "point",
+          longitude: -112.296,
+          latitude: 40.546,
+        };
+        const simpleMarkerSymbol10 = {
+          type: "simple-marker",
+          color: [90,172,68], // Green
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic10 = new Graphic({
+          geometry: point10,
+          symbol: simpleMarkerSymbol10,
+        });
+        graphicsLayer.add(pointGraphic10);
+
+        // Point 11: Cedar City, UT
+        const point11 = {
+          type: "point",
+          longitude: -113.068,
+          latitude: 37.663,
+        };
+        const simpleMarkerSymbol11 = {
+          type: "simple-marker",
+          color: [90,172,68], // Green
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic11 = new Graphic({
+          geometry: point11,
+          symbol: simpleMarkerSymbol11,
+        });
+        graphicsLayer.add(pointGraphic11);
+
+        // Point 12: Elko, NV
+        const point12 = {
+          type: "point",
+          longitude: -115.788,
+          latitude: 40.837,
+        };
+        const simpleMarkerSymbol12 = {
+          type: "simple-marker",
+          color: [250, 195, 56], // Yellow
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic12 = new Graphic({
+          geometry: point12,
+          symbol: simpleMarkerSymbol12,
+        });
+        graphicsLayer.add(pointGraphic12);
+
+        // Point 13: West Jordan, UT
+        const point13 = {
+          type: "point",
+          longitude: -111.958,
+          latitude: 40.608,
+        };
+        const simpleMarkerSymbol13 = {
+          type: "simple-marker",
+          color: [226, 119, 40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic13 = new Graphic({
+          geometry: point13,
+          symbol: simpleMarkerSymbol13,
+        });
+        graphicsLayer.add(pointGraphic13);
+
+        // Point 14: Vernal, UT
+        const point14 = {
+          type: "point",
+          longitude: -109.552,
+          latitude: 40.450,
+        };
+        const simpleMarkerSymbol14 = {
+          type: "simple-marker",
+          color: [226, 119, 40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic14 = new Graphic({
+          geometry: point14,
+          symbol: simpleMarkerSymbol14,
+        });
+        graphicsLayer.add(pointGraphic14);
+
+        // Point 15: Layton, UT
+        const point15 = {
+          type: "point",
+          longitude: -111.945,
+          latitude: 41.059,
+        };
+        const simpleMarkerSymbol15 = {
+          type: "simple-marker",
+          color: [226, 119, 40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic15 = new Graphic({
+          geometry: point15,
+          symbol: simpleMarkerSymbol15,
+        });
+        graphicsLayer.add(pointGraphic15);
+
+        // Point 16: Prescott, AZ
+        const point16 = {
+          type: "point",
+          longitude: -112.483,
+          latitude: 34.562,
+        };
+        const simpleMarkerSymbol16 = {
+          type: "simple-marker",
+          color: [89, 210, 254], // Light Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic16 = new Graphic({
+          geometry: point16,
+          symbol: simpleMarkerSymbol16,
+        });
+        graphicsLayer.add(pointGraphic16);
+
+        // Point 17: Flagstaff, AZ
+        const point17 = {
+          type: "point",
+          longitude: -111.611,
+          latitude: 35.212,
+        };
+        const simpleMarkerSymbol17 = {
+          type: "simple-marker",
+          color: [89, 210, 254], // Light Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic17 = new Graphic({
+          geometry: point17,
+          symbol: simpleMarkerSymbol17,
+        });
+        graphicsLayer.add(pointGraphic17);
+
+        // Point 18: Carson City, NV
+        const point18 = {
+          type: "point",
+          longitude: -119.766,
+          latitude: 39.180,
+        };
+        const simpleMarkerSymbol18 = {
+          type: "simple-marker",
+          color: [250, 195, 56], // Yellow
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic18 = new Graphic({
+          geometry: point18,
+          symbol: simpleMarkerSymbol18,
+        });
+        graphicsLayer.add(pointGraphic18);
+
+        // Point 19: St. George, UT
+        const point19 = {
+          type: "point",
+          longitude: -113.527,
+          latitude: 37.124,
+        };
+        const simpleMarkerSymbol19 = {
+          type: "simple-marker",
+          color: [90,172,68], // Green
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic19 = new Graphic({
+          geometry: point19,
+          symbol: simpleMarkerSymbol19,
+        });
+        graphicsLayer.add(pointGraphic19);
+
+        // Point 20: Las Vegas, NV
+        const point20 = {
+          type: "point",
+          longitude: -115.221,
+          latitude: 36.175,
+        };
+        const simpleMarkerSymbol20 = {
+          type: "simple-marker",
+          color: [90,172,68], // Green
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic20 = new Graphic({
+          geometry: point20,
+          symbol: simpleMarkerSymbol20,
+        });
+        graphicsLayer.add(pointGraphic20);
+
+        // Point 21: Show Low, AZ
+        const point21 = {
+          type: "point",
+          longitude: -110.050,
+          latitude: 34.248,
+        };
+        const simpleMarkerSymbol21 = {
+          type: "simple-marker",
+          color: [89, 210, 254], // Light Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic21 = new Graphic({
+          geometry: point21,
+          symbol: simpleMarkerSymbol21,
+        });
+        graphicsLayer.add(pointGraphic21);
+
+        // Point 22: Casa Grande, AZ
+        const point22 = {
+          type: "point",
+          longitude: -111.739,
+          latitude: 32.880,
+        };
+        const simpleMarkerSymbol22 = {
+          type: "simple-marker",
+          color: [17,103,177], // Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic22 = new Graphic({
+          geometry: point22,
+          symbol: simpleMarkerSymbol22,
+        });
+        graphicsLayer.add(pointGraphic22);
+
+        // Point 23: Ely, NV
+        const point23 = {
+          type: "point",
+          longitude: -114.874,
+          latitude: 39.252,
+        };
+        const simpleMarkerSymbol23 = {
+          type: "simple-marker",
+          color: [250, 195, 56], // Yellow
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic23 = new Graphic({
+          geometry: point23,
+          symbol: simpleMarkerSymbol23,
+        });
+        graphicsLayer.add(pointGraphic23);
+
+        // Point 24: Sierra Vista, AZ
+        const point24 = {
+          type: "point",
+          longitude: -110.255,
+          latitude: 31.560,
+        };
+        const simpleMarkerSymbol24 = {
+          type: "simple-marker",
+          color: [17,103,177], // Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic24 = new Graphic({
+          geometry: point24,
+          symbol: simpleMarkerSymbol24,
+        });
+        graphicsLayer.add(pointGraphic24);
+
+        // Point 25: Goodyear, AZ
+        const point25 = {
+          type: "point",
+          longitude: -112.390,
+          latitude: 33.469,
+        };
+        const simpleMarkerSymbol25 = {
+          type: "simple-marker",
+          color: [17,103,177], // Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic25 = new Graphic({
+          geometry: point25,
+          symbol: simpleMarkerSymbol25,
+        });
+        graphicsLayer.add(pointGraphic25);
+
+        // Point 26: Yuma, AZ
+        const point26 = {
+          type: "point",
+          longitude: -114.625,
+          latitude: 32.668,
+        };
+        const simpleMarkerSymbol26 = {
+          type: "simple-marker",
+          color: [17,103,177], // Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic26 = new Graphic({
+          geometry: point26,
+          symbol: simpleMarkerSymbol26,
+        });
+        graphicsLayer.add(pointGraphic26);
+
+        // Point 27: Kingman, AZ
+        const point27 = {
+          type: "point",
+          longitude: -114.005,
+          latitude: 35.220,
+        };
+        const simpleMarkerSymbol27 = {
+          type: "simple-marker",
+          color: [90,172,68], // Green
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic27 = new Graphic({
+          geometry: point27,
+          symbol: simpleMarkerSymbol27,
+        });
+        graphicsLayer.add(pointGraphic27);
+
+        // Point 28: Bountiful, UT
+        const point28 = {
+          type: "point",
+          longitude: -111.879,
+          latitude: 40.883,
+        };
+        const simpleMarkerSymbol28 = {
+          type: "simple-marker",
+          color: [226, 119, 40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic28 = new Graphic({
+          geometry: point28,
+          symbol: simpleMarkerSymbol28,
+        });
+        graphicsLayer.add(pointGraphic28);
+
+        // Point 29: Reno, NV
+        const point29 = {
+          type: "point",
+          longitude: -119.787,
+          latitude: 39.491,
+        };
+        const simpleMarkerSymbol29 = {
+          type: "simple-marker",
+          color: [250, 195, 56], // Yellow
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic29 = new Graphic({
+          geometry: point29,
+          symbol: simpleMarkerSymbol29,
+        });
+        graphicsLayer.add(pointGraphic29);
+
+        // Point 30: Draper, UT
+        const point30 = {
+          type: "point",
+          longitude: -111.861,
+          latitude: 40.528,
+        };
+        const simpleMarkerSymbol30 = {
+          type: "simple-marker",
+          color: [226, 119, 40], // Orange
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic30 = new Graphic({
+          geometry: point30,
+          symbol: simpleMarkerSymbol30,
+        });
+        graphicsLayer.add(pointGraphic30);
+
+        // Point 31: Prescott Valley, AZ
+        const point31 = {
+          type: "point",
+          longitude: -112.362,
+          latitude: 34.576,
+        };
+        const simpleMarkerSymbol31 = {
+          type: "simple-marker",
+          color: [89, 210, 254], // Light Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic31 = new Graphic({
+          geometry: point31,
+          symbol: simpleMarkerSymbol31,
+        }); 
+        graphicsLayer.add(pointGraphic31);
+
+        // Point 32: Tucson, AZ
+        const point32 = {
+          type: "point",
+          longitude: -110.855,
+          latitude: 32.207,
+        };
+        const simpleMarkerSymbol32 = {
+          type: "simple-marker",
+          color: [17,103,177], // Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic32 = new Graphic({
+          geometry: point32,
+          symbol: simpleMarkerSymbol32,
+        });
+        graphicsLayer.add(pointGraphic32);
+
+        // Point 33: Globe, AZ
+        const point33 = {
+          type: "point",
+          longitude: -110.837,
+          latitude: 33.413,
+        };
+        const simpleMarkerSymbol33 = {
+          type: "simple-marker",
+          color: [89, 210, 254], // Light Blue
+          outline: {
+            color: [255, 255, 255], // Black
+            width: 1,
+          },
+        };
+        const pointGraphic33 = new Graphic({
+          geometry: point33,
+          symbol: simpleMarkerSymbol33,
+        });
+        graphicsLayer.add(pointGraphic33);
+
+
+
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
